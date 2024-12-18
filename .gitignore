@@ -1,3 +1,7 @@
 node/
 node_modules/
 /dist
+# Ignore private SSH keys
+*.pem
+.env
+id_rsa
