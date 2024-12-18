@@ -10,6 +10,7 @@ phases:
   build:
     commands:
       - echo Building the application...
+      - cd FeedBackApp
       - ls src/
       - npm run build
   post_build:
