@@ -49,7 +49,7 @@
         </form>
 
         <p v-if="successMessage" class="success-message">{{ successMessage }}</p>
-        <p v-if="submittedRating" class="submitted-rating">Your Rating: {{ submittedRating }} Stars</p>
+        <!-- <p v-if="submittedRating" class="submitted-rating">Your Rating: {{ submittedRating }} Stars</p> -->
       </div>
     </main>
 
@@ -249,7 +249,7 @@ input[type="file"] {
 button {
   padding: 10px 15px;
   border: none;
-  background-color: #28a745;
+  background-color: #2884a3;
   color: white;
   font-size: 16px;
   border-radius: 5px;
