@@ -1,0 +1,34 @@
+{
+    "sourceFile": "buildspec.yaml",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 4,
+            "patches": [
+                {
+                    "date": 1734563986436,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1734564646503,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,8 +9,9 @@\n       - npm install\r\n   build:\r\n     commands:\r\n       - echo Building the application...\r\n+      - cd FeedBackApp\r\n       - ls src/\r\n       - npm run build\r\n   post_build:\r\n     commands:\r\n"
+                },
+                {
+                    "date": 1734565321424,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -21,9 +21,9 @@\n \r\n artifacts:\r\n   files:\r\n     - '**/*'\r\n-  base-directory: dist\r\n+  base-directory: FeedBackApp/dist\r\n \r\n cache:\r\n   paths:\r\n     - node_modules/**/*\r\n"
+                },
+                {
+                    "date": 1734591624219,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,9 +10,8 @@\n   build:\r\n     commands:\r\n       - echo Building the application...\r\n       - cd FeedBackApp\r\n-      - ls src/\r\n       - npm run build\r\n   post_build:\r\n     commands:\r\n       - echo Build completed. Preparing to copy files to S3...\r\n"
+                },
+                {
+                    "date": 1734625371996,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,9 +14,9 @@\n       - npm run build\r\n   post_build:\r\n     commands:\r\n       - echo Build completed. Preparing to copy files to S3...\r\n-      - aws s3 sync dist/ s3://ajith-demo-s3-v1/ --delete\r\n+      - aws s3 sync dist/ s3://ann-traders-batch01-2024/ --delete\r\n       - echo Files successfully uploaded to S3 bucket.\r\n \r\n artifacts:\r\n   files:\r\n"
+                }
+            ],
+            "date": 1734563986436,
+            "name": "Commit-0",
+            "content": "version: 0.2\r\n\r\nphases:\r\n  install:\r\n    runtime-versions:\r\n      nodejs: 16\r\n    commands:\r\n      - echo Installing dependencies...\r\n      - npm install\r\n  build:\r\n    commands:\r\n      - echo Building the application...\r\n      - ls src/\r\n      - npm run build\r\n  post_build:\r\n    commands:\r\n      - echo Build completed. Preparing to copy files to S3...\r\n      - aws s3 sync dist/ s3://ajith-demo-s3-v1/ --delete\r\n      - echo Files successfully uploaded to S3 bucket.\r\n\r\nartifacts:\r\n  files:\r\n    - '**/*'\r\n  base-directory: dist\r\n\r\ncache:\r\n  paths:\r\n    - node_modules/**/*\r\n\r\n"
+        }
+    ]
+}
