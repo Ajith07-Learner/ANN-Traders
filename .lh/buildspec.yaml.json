@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 4,
+            "activePatchIndex": 5,
             "patches": [
                 {
                     "date": 1734563986436,
@@ -24,6 +24,10 @@
                 {
                     "date": 1734625371996,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,9 +14,9 @@\n       - npm run build\r\n   post_build:\r\n     commands:\r\n       - echo Build completed. Preparing to copy files to S3...\r\n-      - aws s3 sync dist/ s3://ajith-demo-s3-v1/ --delete\r\n+      - aws s3 sync dist/ s3://ann-traders-batch01-2024/ --delete\r\n       - echo Files successfully uploaded to S3 bucket.\r\n \r\n artifacts:\r\n   files:\r\n"
+                },
+                {
+                    "date": 1734681418828,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,9 +14,10 @@\n       - npm run build\r\n   post_build:\r\n     commands:\r\n       - echo Build completed. Preparing to copy files to S3...\r\n-      - aws s3 sync dist/ s3://ann-traders-batch01-2024/ --delete\r\n+      # - aws s3 sync dist/ s3://ann-traders-batch01-2024/ --delete\r\n+      - aws s3 sync dist/ s3://ajith-demo-s3-v1/ --delete\r\n       - echo Files successfully uploaded to S3 bucket.\r\n \r\n artifacts:\r\n   files:\r\n"
                 }
             ],
             "date": 1734563986436,
