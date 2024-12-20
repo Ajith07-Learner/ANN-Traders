@@ -15,7 +15,8 @@ phases:
   post_build:
     commands:
       - echo Build completed. Preparing to copy files to S3...
-      - aws s3 sync dist/ s3://ann-traders-batch01-2024/ --delete
+      # - aws s3 sync dist/ s3://ann-traders-batch01-2024/ --delete
+      - aws s3 sync dist/ s3://ajith-demo-s3-v1/ --delete
       - echo Files successfully uploaded to S3 bucket.
 
 artifacts:

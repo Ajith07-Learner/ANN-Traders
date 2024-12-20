@@ -60,6 +60,7 @@
 </template>
 
 <script>
+import axios from 'axios';
 export default {
   data() {
     return {
@@ -82,25 +83,43 @@ export default {
         this.file = selectedFile;
       }
     },
-    submitFeedback() {
+    async submitFeedback() {
       if (!this.rating) {
         this.errorMessage = "Please provide a rating.";
         return;
       }
       this.errorMessage = "";
 
-      const formData = new FormData();
-      formData.append("feedback", this.feedbackText);
-      formData.append("rating", this.rating);
-      if (this.file) {
-        formData.append("media", this.file);
+      // const formData = new FormData();
+      // formData.append("feedback", this.feedbackText);
+      // formData.append("rating", this.rating);
+      // if (this.file) {
+      //   formData.append("media", this.file);
+      // }
+
+      const payload = {
+    feedback: this.feedbackText,
+    rating: this.rating,
+    media: this.file || "", // Send Base64 or empty string if no file
+  };
+
+      try {
+     const response = await axios.post(
+      "https://4p12zrz1el.execute-api.ap-south-1.amazonaws.com/prod",
+      payload,
+      {
+        headers: { "Content-Type": "application/json" },
       }
+    );
 
       // Reset form and show success message
       this.submittedRating = this.rating;
       this.feedbackText = "";
       this.rating = 0;
       this.file = null;
+      }catch (error){
+          console.error("Error submitting feedback", error);
+      }
 
       const fileInput = document.getElementById("media-upload");
       if (fileInput) {
