@@ -2,9 +2,15 @@
   <div class="app-container">
     <header class="header">
       <div class="logo">ANN TRADERS</div>
+
+      <nav class="nav">
+        <a href="#products" class="nav-link">Products</a>
+        <a href="#feedback" class="nav-link">Feedback</a>
+      </nav>
+
       <div class="search-bar">
-  <input type="text" placeholder="Search..." v-model="searchQuery" />
-</div>
+        <input type="text" placeholder="Search..." v-model="searchQuery" />
+      </div>
 
       <div class="cart-icon">
         <img src="../assets/icons/cart.png" alt="Cart" />
@@ -49,7 +55,6 @@
         </form>
 
         <p v-if="successMessage" class="success-message">{{ successMessage }}</p>
-        <!-- <p v-if="submittedRating" class="submitted-rating">Your Rating: {{ submittedRating }} Stars</p> -->
       </div>
     </main>
 
@@ -60,7 +65,7 @@
 </template>
 
 <script>
-import axios from 'axios';
+import axios from "axios";
 export default {
   data() {
     return {
@@ -70,7 +75,6 @@ export default {
       successMessage: "",
       errorMessage: "",
       searchQuery: "",
-      submittedRating: null,
     };
   },
   methods: {
@@ -90,51 +94,38 @@ export default {
       }
       this.errorMessage = "";
 
-      // const formData = new FormData();
-      // formData.append("feedback", this.feedbackText);
-      // formData.append("rating", this.rating);
-      // if (this.file) {
-      //   formData.append("media", this.file);
-      // }
-
       const payload = {
-    feedback: this.feedbackText,
-    rating: this.rating,
-    media: this.file || "", // Send Base64 or empty string if no file
-  };
+        feedback: this.feedbackText,
+        rating: this.rating,
+        media: this.file || "",
+      };
 
       try {
-     const response = await axios.post(
-      // "https://4p12zrz1el.execute-api.ap-south-1.amazonaws.com/prod",
-      "https://8mx2ah7hll.execute-api.us-east-1.amazonaws.com/prod",
-      payload,
-      {
-        headers: {
-        "Content-Type": "application/json",
-        "Access-Control-Allow-Origin": "*",  // Add this header if needed on the backend
-      },
-      }
-    );
+        const response = await axios.post(
+          "https://8mx2ah7hll.execute-api.us-east-1.amazonaws.com/prod",
+          payload,
+          {
+            headers: {
+              "Content-Type": "application/json",
+              "Access-Control-Allow-Origin": "*",
+            },
+          }
+        );
 
-      // Reset form and show success message
-      this.submittedRating = this.rating;
-      this.feedbackText = "";
-      this.rating = 0;
-      this.file = null;
-      }catch (error){
-          console.error("Error submitting feedback", error);
-      }
+        this.feedbackText = "";
+        this.rating = 0;
+        this.file = null;
 
-      const fileInput = document.getElementById("media-upload");
-      if (fileInput) {
-        fileInput.value = "";
-      }
+        const fileInput = document.getElementById("media-upload");
+        if (fileInput) {
+          fileInput.value = "";
+        }
 
-      this.successMessage = "Feedback submitted successfully!";
+        this.successMessage = "Feedback submitted successfully!";
+      } catch (error) {
+        console.error("Error submitting feedback", error);
+      }
     },
-    search() {
-      alert(`Searching for: ${this.searchQuery}`);
-    }
   },
 };
 </script>
@@ -162,43 +153,48 @@ export default {
   background: linear-gradient(135deg, #6a1b9a, #d32f2f);
   -webkit-background-clip: text;
   background-clip: text;
-  font-family: 'Montserrat', sans-serif;
-  text-indent: 20px;
+  font-family: "Montserrat", sans-serif;
+  margin-right: 50px; /* Add space between logo and tabs */
 }
+
+.nav {
+  display: flex;
+  gap: 20px;
+}
+
+.nav-link {
+  color: #007bff;
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.nav-link:hover {
+  text-decoration: underline;
+}
+
 .search-bar {
   position: relative;
   width: 100%;
-  max-width: 600px; /* Adjust width as needed */
+  max-width: 600px;
   margin: 0 auto;
 }
 
 .search-bar input {
   width: 80%;
-  padding: 10px 20px 10px 10px; /* Extra space for the icon */
+  padding: 10px 20px;
   font-size: 16px;
   border: 1px solid #ccc;
   border-radius: 5px;
-  box-sizing: border-box;
-  cursor: pointer;
-  text-indent: 2px;
 }
 
 .search-bar input::placeholder {
   color: #999;
 }
 
-.search-bar input[type="text"] {
-  background-image: url('../assets/icons/search.png'); /* Path to your icon */
-  background-position: right 10px center; /* Position the icon on the right side */
-  background-repeat: no-repeat;
-  background-size: 25px 25px; /* Resize the icon */
-}
-
-
 .cart-icon img {
   width: 50px;
   cursor: pointer;
-  margin-right: 20px;
 }
 
 .main-content {
@@ -210,15 +206,13 @@ export default {
 }
 
 .feedback-page {
-  width: 90%; /* Increased width for a more spacious look */
-  max-width: 700px; /* Max width adjustment for wider screens */
+  width: 90%;
+  max-width: 700px;
   padding: 15px;
-  background: #f9f9f9; /* Soft background for minimal look */
-  border: 1px solid #ddd; /* Light border for subtle separation */
+  background: #f9f9f9;
+  border: 1px solid #ddd;
   border-radius: 12px;
-  box-shadow: none; /* No shadow for a clean, flat look */
 }
-
 
 h1 {
   text-align: center;
@@ -234,15 +228,11 @@ form {
 textarea {
   width: 100%;
   height: 100px;
-  margin-right: 20px; /* Right margin */
   margin-bottom: 15px;
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 5px;
-  font-size: 14px;
-  box-sizing: border-box; /* Ensures padding and borders are included in width calculation */
 }
-
 
 .rating-section {
   margin-bottom: 15px;
@@ -251,12 +241,12 @@ textarea {
 .stars {
   display: flex;
   gap: 5px;
-  cursor: pointer;
 }
 
 .star {
   font-size: 24px;
   color: #ccc;
+  cursor: pointer;
 }
 
 .star.filled {
@@ -278,7 +268,6 @@ button {
   color: white;
   font-size: 16px;
   border-radius: 5px;
-  cursor: pointer;
 }
 
 button:hover {
@@ -290,13 +279,6 @@ button:hover {
   text-align: center;
   color: #28a745;
   font-weight: bold;
-}
-
-.submitted-rating {
-  margin-top: 10px;
-  text-align: center;
-  font-size: 16px;
-  color: #333;
 }
 
 .footer {
