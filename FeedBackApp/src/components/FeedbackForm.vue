@@ -105,7 +105,8 @@ export default {
 
       try {
      const response = await axios.post(
-      "https://4p12zrz1el.execute-api.ap-south-1.amazonaws.com/prod",
+      // "https://4p12zrz1el.execute-api.ap-south-1.amazonaws.com/prod",
+      "https://8mx2ah7hll.execute-api.us-east-1.amazonaws.com/prod",
       payload,
       {
         headers: {
