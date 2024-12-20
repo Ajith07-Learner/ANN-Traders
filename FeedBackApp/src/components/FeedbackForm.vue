@@ -17,7 +17,7 @@
         <form @submit.prevent="submitFeedback">
           <textarea
             v-model="feedbackText"
-            placeholder="Write your feedback here..."
+            placeholder="Leave your feedback here.."
             required
           ></textarea>
 
@@ -210,13 +210,15 @@ export default {
 }
 
 .feedback-page {
-  width: 80%; /* Set the width to a percentage to allow dynamic resizing */
-  max-width: 600px; /* Max width to control the maximum expansion */
-  padding: 20px;
-  background: white;
-  border-radius: 8px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  width: 90%; /* Increased width for a more spacious look */
+  max-width: 700px; /* Max width adjustment for wider screens */
+  padding: 15px;
+  background: #f9f9f9; /* Soft background for minimal look */
+  border: 1px solid #ddd; /* Light border for subtle separation */
+  border-radius: 12px;
+  box-shadow: none; /* No shadow for a clean, flat look */
 }
+
 
 h1 {
   text-align: center;
