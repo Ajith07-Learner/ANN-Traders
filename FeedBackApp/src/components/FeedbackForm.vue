@@ -3,7 +3,7 @@
     <header class="header">
       <div class="logo">ANN TRADERS</div>
       <div class="search-bar">
-  <input type="text" placeholder="Search..." v-model="searchQuery" @click="triggerSearch" />
+  <input type="text" placeholder="Search..." v-model="searchQuery" />
 </div>
 
       <div class="cart-icon">
@@ -108,7 +108,10 @@ export default {
       "https://4p12zrz1el.execute-api.ap-south-1.amazonaws.com/prod",
       payload,
       {
-        headers: { "Content-Type": "application/json" },
+        headers: {
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*",  // Add this header if needed on the backend
+      },
       }
     );
 
